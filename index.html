@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title></title>
+<script>
+// ============================================================
+// EDIT YOUR TEXT AND PHOTOS HERE
+// Change the words inside the quotes. Keep the quotes and commas.
+// To include double quotes inside a message, write \".
+// The date uses YYYY-MM-DD and local time.
+// ============================================================
+const CONFIG = {
+  // Names, main heading, and countdown
+  heading: "Four years of us",
+  yourName: "Tish",
+  herName: "Hiru",
+  startDate: "2022-11-26T00:00:00",    // <- 26 November 2022
+  sinceLabel: "Together since",
+  scrollPrompt: "scroll down ↓",
+  counterLabels: ["years", "months", "days", "hours", "minutes", "seconds"],
+
+  // Letter (one quoted line per paragraph)
+  letterHeading: "A letter for you",
+  openLetterHint: "Tap the heart to open",
+  closeLetterHint: "Tap the heart again to close",
+  openLetterLabel: "Open the letter",
+  letter: [
+    "Four years ago I had no idea how much my life was about to change. Somehow you made the ordinary days the best part of my entire life darling.",
+    "Thank you for the patience, the laughter, and for believing in me when I didn't do it myself raththaran. You always make me want to be better, and you make it feel easy all the time...",
+    "I made this little page because a message in a chat cannot express how much you mean to me, how much I am willing to do for you and finally, HOW MUCH I LOVE YOU ♥..."
+  ],
+  sign: "Always yours, Tish Baby",
+
+  // Your apology: make it yours, add real moments if you like.
+  apologyHeading: "I’m sorry my princess",
+  apology: [
+    "I know, we always fight because of the things I do, and making you sad and worried all the time. But I never meant to make your sad. Making you cry or feel sad is the last thing I would ever want.",
+    "You have always been patient and been there for me. Thanks for that raththaran. No matter what life brings on, no matter what dumb thing I do in life, I will always be by your side, cheering for you no matter what.",
+    "Thank you for listening to me all the times. And I cannot say sorry enough for the times I have made you suffer. I am working hard all the time trying to give something to you. I never want to do something for myself, but for you. To see that cute little smile on your face darling."
+  ],
+  apologySign: "I LOVE YOU AND I AM SORRY DARLING.",
+
+  // PHOTOS
+  // Put your image files in a folder called "photos" next to this HTML file.
+  // Change the filename and caption inside the quotes.
+  // Copy a { src: ..., caption: ... }, line to add another photo to any list.
+  // Add photos in pairs above the bottom gallery.
+  // Use caption: "" to skip the caption. Use [] to leave a photo spot empty.
+  photoPlaceholder: "Add a photo here",
+  photoDialogLabel: "Photo",
+  openingPhotos: [
+    { src: "photos/4.jpg", caption: "MY FAV SMILE" },
+    { src: "photos/7.jpg", caption: "PRETTY ANGEL" },
+  ],
+  letterPhotos: [
+    { src: "photos/3.jpg", caption: "BEING" },
+    { src: "photos/8.jpg", caption: "US" },
+  ],
+
+  // Each milestone can have its own photos. Add, remove, or reorder milestones freely.
+  storyHeading: "Our story",
+  beforeTimelinePhotos: [
+    { src: "photos/16.jpg", caption: "MILLION" },
+    { src: "photos/17.jpg", caption: "HUGS" },
+  ],
+  milestones: [
+    {
+      when: "Year one",
+      title: "How it started",
+      text: "I never thought that just saying ok to a friend would my life turn to be the best I could ever I asked for. And saying 'Ok Lets go' to that one perticular class is the best thing and the wildest start of my life. The moment I saw your pretty eyes, beautiful face, cury body and amazing personality, I knew you are mine and I need you for the rest of mu life.",
+      photos: [
+        { src: "photos/1.jpg", caption: "HOW IT" },
+        { src: "photos/34.jpg", caption: "STARTED" },
+      ],
+    },
+    {
+      when: "Year two",
+      title: "The hard Journey",
+      text: "From sneaking out like going to classes every week and meeting in different different places with the very little oney we had, sneaking in parks, restaurants, malls and somany other places holds a special place in my heart and I will cherish those beautiful memories for the rest of my life baby.",
+      photos: [
+        { src: "photos/2.jpg", caption: "THE HARD" },
+        { src: "photos/35.jpg", caption: "JOURNEY" },
+      ],
+    },
+    {
+      when: "Year three",
+      title: "Shaping together",
+      text: "The late night studying calls, helping each other in literally everything has shaped me to be a different person. My life is either with you or no life at all. I cannot factor in a life without you. Thanks for being that awesome person darling.",
+      photos: [
+        { src: "photos/9.jpg", caption: "SHAPING" },
+        { src: "photos/36.jpg", caption: "TOGETHER" },
+      ],
+    },
+    {
+      when: "Year four",
+      title: "The future",
+      text: "And finally still choosing each other, every single day for the rest of our lives will be the story of our life darling.",
+      photos: [
+        { src: "photos/10.jpg", caption: "THE" },
+        { src: "photos/37.jpg", caption: "FUTURE" },
+      ],
+    },
+  ],
+
+  // Between the timeline and the apology
+  afterTimelinePhotos: [
+    { src: "photos/18.jpg", caption: "I LOVE" },
+    { src: "photos/19.jpg", caption: "YOU ♥" },
+  ],
+
+  apologyPhotos: [
+    { src: "photos/5.jpg", caption: "FOR MORE" },
+    { src: "photos/11.jpg", caption: "KISSES" },
+  ],
+  photosHeading: "Our favourite moments",
+  photos: [
+    { src: "photos/12.jpg", caption: "MISSING" },
+    { src: "photos/13.jpg", caption: "YOUR" },
+    { src: "photos/14.jpg", caption: "CLINGY" },
+    { src: "photos/38.jpg", caption: "HUGS" },
+  ],
+  // Between the gallery and the final message
+  beforeFinalePhotos: [
+    { src: "photos/20.jpg", caption: "FOREVER" },
+    { src: "photos/21.jpg", caption: "LOVE" },
+  ],
+  endingPhotos: [
+    { src: "photos/6.jpg", caption: "FOR" },
+    { src: "photos/15.jpg", caption: "ETERNITY" },
+  ],
+
+  // Bottom gallery, below the final surprise
+  bottomGalleryHeading: "More of us",
+  bottomGalleryPhotos: [
+    { src: "photos/22.jpg", caption: "" },
+    { src: "photos/23.jpg", caption: "" },
+    { src: "photos/24.jpg", caption: "" },
+    { src: "photos/25.jpg", caption: "" },
+    { src: "photos/26.jpg", caption: "" },
+    { src: "photos/27.jpg", caption: "" },
+    { src: "photos/28.jpg", caption: "" },
+    { src: "photos/29.jpg", caption: "" },
+    { src: "photos/30.jpg", caption: "" },
+    { src: "photos/31.jpg", caption: "" },
+    { src: "photos/32.jpg", caption: "" },
+    { src: "photos/33.jpg", caption: "" },
+  ],
+
+  // Ending
+  finalLine: "Four years down. Every one of them better because you were with me.",
+  surpriseButton: "One last thing",
+  surprise: "HAPPY ANNIVERSARY MY LOVE ♥",
+  footer: "Made with love, just for you Jaanu. Love you to the Galaxy and Beyond..."
+};
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Karla:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#120f2b; --plum:#2a1646; --wine:#4a1d4f;
+    --rose:#ff6f91; --gold:#ffd6a5; --blush:#fff0f3; --ink:#2b1a33;
+    --script:'Pinyon Script','Brush Script MT','Segoe Script',cursive;
+    --serif:'Cormorant Garamond',Georgia,'Times New Roman',serif;
+    --sans:'Karla',system-ui,-apple-system,'Segoe UI',sans-serif;
+    --glass:rgba(255,255,255,.07); --glassline:rgba(255,255,255,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);font-size:18px;line-height:1.65;color:#f6ecf3;background:var(--night);overflow-x:hidden}
+  body::before{content:"";position:fixed;inset:0;z-index:-2;background:linear-gradient(180deg,#120f2b 0%,#2a1646 40%,#4a1d4f 72%,#1c1236 100%)}
+  #stars{position:fixed;inset:0;z-index:-1;pointer-events:none}
+  #stars i{position:absolute;width:3px;height:3px;border-radius:50%;background:#fff;animation:tw 4s ease-in-out infinite}
+  @keyframes tw{0%,100%{opacity:.15}50%{opacity:.95}}
+  #hearts{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+  #hearts i{position:absolute;bottom:-50px;color:var(--rose);font-style:normal;opacity:0;animation:rise linear infinite}
+  @keyframes rise{0%{transform:translate(0,0);opacity:0}10%{opacity:.55}50%{transform:translate(24px,-58vh)}100%{transform:translate(-10px,-118vh);opacity:0}}
+  #fx{position:fixed;inset:0;z-index:50;pointer-events:none}
+
+  section{padding:96px 22px;position:relative}
+  .wrap{max-width:760px;margin:0 auto}
+  h2{font-family:var(--script);font-weight:400;font-size:clamp(44px,8vw,68px);line-height:1.1;color:var(--gold);text-align:center;margin-bottom:46px}
+
+  /* Hero */
+  .hero{min-height:100vh;min-height:100svh;padding:calc(26px + env(safe-area-inset-top)) 22px 28px;display:flex;align-items:center;justify-content:center;text-align:center}
+  .hero .wrap{width:100%;min-width:0}
+  .hero .names{font-family:var(--serif);font-style:italic;font-size:clamp(22px,4vw,30px);color:var(--gold);letter-spacing:.04em}
+  .hero h1{font-family:var(--script);font-weight:400;font-size:clamp(64px,17vw,164px);line-height:1;margin:6px 0 10px;
+    background:linear-gradient(100deg,#ff9bb3 10%,#ffd6a5 55%,#ff6f91 95%);-webkit-background-clip:text;background-clip:text;color:transparent;
+    filter:drop-shadow(0 0 28px rgba(255,111,145,.35))}
+  .since{font-family:var(--serif);font-size:clamp(19px,3vw,23px);opacity:.88}
+  .counter{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:44px auto 0;max-width:640px}
+  .counter div{background:var(--glass);border:1px solid var(--glassline);border-radius:16px;padding:14px 4px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+  .counter b{display:block;font-family:var(--serif);font-weight:600;font-size:clamp(24px,5vw,38px);line-height:1.1;font-variant-numeric:tabular-nums}
+  .counter span{font-size:12px;opacity:.7}
+  .scroll{margin-top:54px;font-size:14px;opacity:.65;animation:bob 2.4s ease-in-out infinite}
+  @keyframes bob{50%{transform:translateY(8px)}}
+
+  /* Letter */
+  .seal-wrap{text-align:center}
+  .seal{width:116px;height:116px;border-radius:50%;border:0;cursor:pointer;color:#ffe3ea;font-size:48px;
+    background:radial-gradient(circle at 34% 28%,#ff8fa9,#c93a62 62%,#8f2144);
+    box-shadow:0 0 0 8px rgba(255,111,145,.14),0 14px 40px rgba(255,111,145,.45);animation:beat 1.9s ease-in-out infinite}
+  .seal:focus-visible{outline:3px solid var(--gold);outline-offset:6px}
+  @keyframes beat{0%,100%{transform:scale(1)}14%{transform:scale(1.09)}28%{transform:scale(1)}42%{transform:scale(1.06)}}
+  .hint{margin-top:18px;font-family:var(--serif);font-style:italic;font-size:21px;color:var(--gold)}
+  .paper{max-height:0;opacity:0;overflow:hidden;transition:max-height 1.4s ease,opacity .9s ease;margin-top:0}
+  .paper.open{max-height:2400px;opacity:1;margin-top:42px}
+  .paper article{background:var(--blush);color:var(--ink);border-radius:6px;padding:clamp(28px,6vw,60px);box-shadow:0 24px 60px rgba(0,0,0,.4);border-top:6px solid var(--rose)}
+  .paper p{font-family:var(--serif);font-weight:500;font-size:clamp(21px,3vw,25px);line-height:1.6;margin-bottom:1em}
+  .paper .sign{font-family:var(--script);font-size:clamp(34px,6vw,46px);color:#c93a62;margin:26px 0 0;line-height:1.1}
+
+  /* Apology */
+  .sorry{background:var(--glass);border:1px solid var(--glassline);border-radius:24px;padding:clamp(28px,6vw,56px);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);box-shadow:0 0 60px rgba(255,111,145,.12)}
+  .sorry p{font-family:var(--serif);font-weight:500;font-size:clamp(21px,3vw,25px);line-height:1.6;margin-bottom:1em}
+  .sorry .sign{font-family:var(--sans);font-size:clamp(19px,4.8vw,26px);font-weight:600;color:var(--gold);margin:22px 0 0;line-height:1.4}
+
+  /* Timeline */
+  .timeline{list-style:none;position:relative;padding-left:34px}
+  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--rose),var(--gold));box-shadow:0 0 12px var(--rose)}
+  .timeline li{position:relative;margin-bottom:34px;background:var(--glass);border:1px solid var(--glassline);border-radius:20px;padding:24px 26px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+  .timeline li.in{opacity:1;transform:none}
+  .timeline li::before{content:"♥";position:absolute;left:-34px;top:22px;width:18px;text-align:center;font-size:17px;color:var(--rose);text-shadow:0 0 12px var(--rose)}
+  .timeline time{font-size:15px;color:var(--gold);font-weight:600}
+  .timeline h3{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1.2;margin:2px 0 6px}
+  .timeline p{opacity:.88}
+  @media(min-width:860px){
+    .wrap.wide{max-width:900px}
+    .timeline{padding-left:0}
+    .timeline::before{left:50%;margin-left:-1px}
+    .timeline li{width:calc(50% - 40px)}
+    .timeline li:nth-child(odd){margin-right:auto}
+    .timeline li:nth-child(even){margin-left:auto}
+    .timeline li::before{top:22px}
+    .timeline li:nth-child(odd)::before{left:auto;right:-49px}
+    .timeline li:nth-child(even)::before{left:-49px}
+  }
+
+  /* Photos */
+  .wall{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,180px),260px));justify-content:center;gap:34px 24px;max-width:980px;margin:0 auto}
+  .wall:empty{display:none}
+  .photo-strip{margin-top:44px}
+  .story-intro-photos:not(:empty){margin-bottom:48px}
+  .photo-break{padding-block:24px}
+  .photo-break:has(.wall:empty){display:none}
+  /* Keep the trail centered while the photo pairs alternate their tilt and height. */
+  .bottom-gallery .wall {
+    position: relative;
+    isolation: isolate;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 34px clamp(42px, 11vw, 104px);
+    max-width: 630px;
+    padding-block: 18px 28px;
+  }
+
+  .gallery-trail {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  .gallery-trail path {
+    fill: none;
+    stroke: #ff9bb3;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-dasharray: 3 6;
+  }
+
+  .gallery-trail text {
+    fill: var(--gold);
+    font: 18px system-ui, sans-serif;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  .bottom-gallery .polaroid:nth-child(4n + 1) { transform: rotate(-4deg); }
+  .bottom-gallery .polaroid:nth-child(4n + 2) { transform: translateY(19px) rotate(4deg); }
+  .bottom-gallery .polaroid:nth-child(4n + 3) { transform: translateY(19px) rotate(3deg); }
+  .bottom-gallery .polaroid:nth-child(4n + 4) { transform: rotate(-3deg); }
+
+  @media (hover: hover) {
+    .bottom-gallery .polaroid:hover { transform: rotate(0) scale(1.05); }
+  }
+  .bottom-gallery:has(.wall:empty){display:none}
+  .milestone-photos{grid-template-columns:repeat(auto-fit,minmax(min(100%,110px),170px));gap:24px 15px;margin-top:24px}
+  .polaroid{position:relative;background:#fff;color:var(--ink);padding:12px 12px 16px;box-shadow:0 16px 36px rgba(0,0,0,.45);transition:transform .3s;cursor:pointer}
+  .polaroid::before{content:"";position:absolute;top:-12px;left:50%;width:84px;height:24px;margin-left:-42px;background:rgba(255,214,165,.65);transform:rotate(-3deg)}
+  .polaroid:nth-child(3n+1){transform:rotate(-2.4deg)}
+  .polaroid:nth-child(3n+2){transform:rotate(1.8deg)}
+  .polaroid:nth-child(3n){transform:rotate(-.8deg)}
+  .polaroid:hover{transform:rotate(0) scale(1.05);z-index:2}
+  .frame{position:relative;aspect-ratio:1/1;background:linear-gradient(135deg,#f6d8e1,#d9cdea);display:grid;place-items:center;font-size:14px;color:#8a6a82;text-align:center;padding:10px}
+  .frame img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .polaroid figcaption{font-family:var(--sans);font-size:18px;font-weight:600;line-height:1.35;text-align:center;margin-top:10px;color:#a8324f;overflow-wrap:anywhere}
+  #lb{position:fixed;inset:0;z-index:60;background:rgba(10,6,24,.92);display:none;align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+  #lb.show{display:flex}
+  #lb img{max-width:100%;max-height:88vh;border-radius:6px;box-shadow:0 20px 60px #000}
+
+  /* Finale */
+  .finale{text-align:center;padding-bottom:120px}
+  .finale p.big{font-family:var(--serif);font-style:italic;font-size:clamp(26px,5vw,40px);line-height:1.35;max-width:20em;margin:0 auto}
+  button.cta{margin-top:40px;font:600 19px var(--sans);color:var(--night);background:linear-gradient(100deg,#ffd6a5,#ff9bb3);border:0;border-radius:999px;padding:17px 38px;cursor:pointer;box-shadow:0 10px 30px rgba(255,111,145,.4)}
+  button.cta:hover{filter:brightness(1.06)}
+  button.cta:focus-visible{outline:3px solid #fff;outline-offset:4px}
+  #reveal{max-height:0;opacity:0;overflow:hidden;transition:max-height .9s ease,opacity .9s ease}
+  #reveal.open{max-height:600px;opacity:1}
+  #reveal p{font-family:var(--script);font-size:clamp(40px,8vw,70px);line-height:1.15;color:var(--gold);margin-top:46px}
+  footer{text-align:center;padding:36px 22px 48px;font-family:var(--serif);font-style:italic;opacity:.7}
+
+  @media (max-width: 560px) {
+    section { padding: 62px 20px; }
+    h2 { margin-bottom: 32px; }
+    .hero { padding: calc(24px + env(safe-area-inset-top)) 20px 24px; }
+    .hero h1 { font-size: clamp(52px, 15vw, 80px); }
+    .counter { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 28px; }
+    .scroll { margin-top: 32px; }
+    .photo-strip { margin-top: 34px; }
+    .photo-break { padding-block: 16px; }
+    .finale { padding-bottom: 48px; }
+    .bottom-gallery { padding-top: 30px; }
+
+    .wall {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px 16px;
+      max-width: 380px;
+    }
+
+    .wall > .polaroid:only-child { grid-column: 1 / -1; justify-self: center; width: min(100%, 180px); }
+    .bottom-gallery .wall { column-gap: clamp(34px, 10vw, 52px); row-gap: 34px; }
+    .polaroid { min-width: 0; padding: 7px 7px 10px; }
+    .polaroid::before { width: 56px; height: 16px; top: -8px; margin-left: -28px; }
+    .polaroid figcaption { font-size: clamp(14px, 3.8vw, 17px); }
+    .frame { padding: 5px; font-size: 11px; }
+    .timeline li { padding: 20px 16px; }
+    footer { padding-bottom: calc(36px + env(safe-area-inset-bottom)); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .polaroid { --slide-from: -22px; }
+    .polaroid:nth-child(even) { --slide-from: 22px; }
+    .polaroid.awaiting-scroll { opacity: 0; }
+    .polaroid.scroll-reveal { animation: photo-reveal 650ms cubic-bezier(.2,.7,.3,1) both; }
+
+    @keyframes photo-reveal {
+      from { opacity: 0; translate: var(--slide-from) 19px; }
+      to { opacity: 1; translate: 0 0; }
+    }
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    #stars i,.seal,.scroll{animation:none}
+    #hearts{display:none}
+    .timeline li{opacity:1;transform:none;transition:none}
+    .paper,#reveal,.polaroid{transition:none}
+  }
+</style>
+</head>
+<body>
+<div id="stars" aria-hidden="true"></div>
+<div id="hearts" aria-hidden="true"></div>
+<canvas id="fx" aria-hidden="true"></canvas>
+<div id="lb" role="dialog"><img alt=""></div>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="names" id="names"></p>
+    <h1 id="heading"></h1>
+    <p class="since" id="since"></p>
+    <div class="counter" id="counter"></div>
+    <div class="wall photo-strip" id="openingPhotos"></div>
+    <p class="scroll" id="scrollPrompt"></p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2 id="letterHeading"></h2>
+    <div class="seal-wrap">
+      <button class="seal" id="seal" aria-expanded="false" aria-controls="paper">♥</button>
+      <p class="hint" id="hint"></p>
+    </div>
+    <div class="paper" id="paper"><article><div id="letter"></div><p class="sign" id="sign"></p></article></div>
+    <div class="wall photo-strip" id="letterPhotos"></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap wide">
+    <h2 id="storyHeading"></h2>
+    <div class="wall story-intro-photos" id="beforeTimelinePhotos"></div>
+    <ol class="timeline" id="timeline"></ol>
+  </div>
+</section>
+
+<section class="photo-break">
+  <div class="wall" id="afterTimelinePhotos"></div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 id="apologyHeading"></h2>
+    <div class="sorry"><div id="apology"></div><p class="sign" id="apologySign"></p></div>
+    <div class="wall photo-strip" id="apologyPhotos"></div>
+  </div>
+</section>
+
+<section>
+  <h2 id="photosHeading"></h2>
+  <div class="wall" id="wall"></div>
+</section>
+
+<section class="photo-break">
+  <div class="wall" id="beforeFinalePhotos"></div>
+</section>
+
+<section class="finale">
+  <div class="wrap">
+    <p class="big" id="finalLine"></p>
+    <div class="wall photo-strip" id="endingPhotos"></div>
+    <button class="cta" id="btn" aria-expanded="false" aria-controls="reveal"></button>
+    <div id="reveal"><p id="surpriseText"></p></div>
+  </div>
+</section>
+
+<section class="bottom-gallery">
+  <h2 id="bottomGalleryHeading"></h2>
+  <div class="wall" id="bottomGalleryPhotos"></div>
+</section>
+
+<footer id="footer"></footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const start = new Date(CONFIG.startDate);
+
+/* Populate the page from the editable text above. */
+document.title = CONFIG.heading;
+$("heading").textContent = CONFIG.heading;
+$("scrollPrompt").textContent = CONFIG.scrollPrompt;
+$("letterHeading").textContent = CONFIG.letterHeading;
+$("hint").textContent = CONFIG.openLetterHint;
+$("seal").setAttribute("aria-label", CONFIG.openLetterLabel);
+$("storyHeading").textContent = CONFIG.storyHeading;
+$("apologyHeading").textContent = CONFIG.apologyHeading;
+$("photosHeading").textContent = CONFIG.photosHeading;
+$("bottomGalleryHeading").textContent = CONFIG.bottomGalleryHeading;
+$("lb").setAttribute("aria-label", CONFIG.photoDialogLabel);
+$("btn").textContent = CONFIG.surpriseButton;
+
+$("names").textContent = CONFIG.yourName + " & " + CONFIG.herName;
+$("since").textContent = CONFIG.sinceLabel + " " + start.toLocaleDateString("en-GB", {day:"numeric", month:"long", year:"numeric"});
+$("sign").textContent = CONFIG.sign;
+$("apologySign").textContent = CONFIG.apologySign;
+CONFIG.apology.forEach(t => { const p = document.createElement("p"); p.textContent = t; $("apology").appendChild(p); });
+$("finalLine").textContent = CONFIG.finalLine;
+$("surpriseText").textContent = CONFIG.surprise;
+$("footer").textContent = CONFIG.footer;
+
+CONFIG.letter.forEach(t => { const p = document.createElement("p"); p.textContent = t; $("letter").appendChild(p); });
+
+CONFIG.milestones.forEach(m => {
+  const li = document.createElement("li");
+  li.innerHTML = "<time></time><h3></h3><p></p>";
+  li.querySelector("time").textContent = m.when;
+  li.querySelector("h3").textContent = m.title;
+  li.querySelector("p").textContent = m.text;
+  const photos = document.createElement("div");
+  photos.className = "wall milestone-photos";
+  addPhotos(photos, m.photos);
+  li.appendChild(photos);
+  $("timeline").appendChild(li);
+});
+
+/* Use the same photo cards and full-size viewer in every section. */
+function addPhotos(container, photos = []) {
+  for (const { src, caption } of photos) {
+    const card = document.createElement("figure");
+    card.className = "polaroid";
+    card.innerHTML = '<div class="frame"><span></span><img alt=""></div>';
+    card.querySelector("span").textContent = CONFIG.photoPlaceholder;
+
+    const image = card.querySelector("img");
+    image.alt = caption || "";
+    image.loading = "lazy";
+    image.decoding = "async";
+    image.onerror = () => image.remove();
+    image.src = src;
+
+    if (caption) {
+      const label = document.createElement("figcaption");
+      label.textContent = caption;
+      card.appendChild(label);
+    }
+
+    card.addEventListener("click", () => {
+      if (!card.contains(image) || !image.naturalWidth) return;
+      const fullImage = $("lb").querySelector("img");
+      fullImage.src = src;
+      fullImage.alt = image.alt;
+      $("lb").classList.add("show");
+    });
+    container.appendChild(card);
+  }
+}
+
+addPhotos($("openingPhotos"), CONFIG.openingPhotos);
+addPhotos($("letterPhotos"), CONFIG.letterPhotos);
+addPhotos($("apologyPhotos"), CONFIG.apologyPhotos);
+addPhotos($("wall"), CONFIG.photos);
+addPhotos($("endingPhotos"), CONFIG.endingPhotos);
+addPhotos($("beforeTimelinePhotos"), CONFIG.beforeTimelinePhotos);
+addPhotos($("afterTimelinePhotos"), CONFIG.afterTimelinePhotos);
+addPhotos($("beforeFinalePhotos"), CONFIG.beforeFinalePhotos);
+addPhotos($("bottomGalleryPhotos"), CONFIG.bottomGalleryPhotos);
+
+/* Connect all gallery cards in reading order and redraw when the layout changes. */
+function drawGalleryTrail(gallery) {
+  const frames = [...gallery.querySelectorAll(".frame")];
+  if (frames.length < 2) return;
+
+  const svgNamespace = "http://www.w3.org/2000/svg";
+  const trail = document.createElementNS(svgNamespace, "svg");
+  trail.classList.add("gallery-trail");
+  trail.setAttribute("aria-hidden", "true");
+  gallery.appendChild(trail);
+
+  function redraw() {
+    const galleryBounds = gallery.getBoundingClientRect();
+    const centers = frames.map(frame => {
+      const bounds = frame.getBoundingClientRect();
+      return {
+        x: bounds.left + bounds.width / 2 - galleryBounds.left,
+        y: bounds.top + bounds.height / 2 - galleryBounds.top,
+      };
+    });
+
+    const path = document.createElementNS(svgNamespace, "path");
+    const [first, ...rest] = centers;
+    let commands = `M ${first.x} ${first.y}`;
+    const hearts = [];
+    rest.forEach((point, index) => {
+      const previous = centers[index];
+      const middleX = (previous.x + point.x) / 2;
+      const middleY = (previous.y + point.y) / 2;
+      if (index % 2 === 0) {
+        // Curl around a heart in each gap between the two photos in a row.
+        const curl = Math.min(23, galleryBounds.width * 0.055);
+        const turn = Math.floor(index / 2) % 2 === 0 ? -1 : 1;
+        const tipY = middleY + turn * curl * 2.5;
+        commands += ` C ${middleX - curl} ${previous.y}, ${middleX - curl} ${middleY}, ${middleX} ${middleY}`;
+        commands += ` C ${middleX + curl} ${middleY}, ${middleX + curl} ${tipY}, ${middleX} ${tipY}`;
+        commands += ` C ${middleX - curl} ${tipY}, ${middleX - curl} ${middleY}, ${middleX} ${middleY}`;
+        commands += ` C ${middleX + curl} ${middleY}, ${middleX + curl} ${point.y}, ${point.x} ${point.y}`;
+        const heart = document.createElementNS(svgNamespace, "text");
+        heart.setAttribute("x", middleX);
+        heart.setAttribute("y", (middleY + tipY) / 2);
+        heart.textContent = "♥";
+        hearts.push(heart);
+      } else {
+        commands += ` C ${previous.x} ${middleY}, ${point.x} ${middleY}, ${point.x} ${point.y}`;
+      }
+    });
+    path.setAttribute("d", commands);
+    trail.replaceChildren(path, ...hearts);
+  }
+
+  redraw();
+  const observer = new ResizeObserver(redraw);
+  observer.observe(gallery);
+  frames.forEach(frame => observer.observe(frame));
+}
+
+drawGalleryTrail($("bottomGalleryPhotos"));
+
+if (!reduce && "IntersectionObserver" in window) {
+  const photoObserver = new IntersectionObserver(entries => {
+    for (const { target, isIntersecting } of entries) {
+      if (!isIntersecting) continue;
+      target.classList.remove("awaiting-scroll");
+      target.classList.add("scroll-reveal");
+      photoObserver.unobserve(target);
+    }
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".polaroid").forEach(card => {
+    if (card.getBoundingClientRect().top < innerHeight) return;
+    card.classList.add("awaiting-scroll");
+    photoObserver.observe(card);
+  });
+}
+
+
+$("lb").addEventListener("click", () => $("lb").classList.remove("show"));
+document.addEventListener("keydown", e => { if (e.key === "Escape") $("lb").classList.remove("show"); });
+
+/* Starry sky */
+for (let i = 0; i < 60; i++) {
+  const s = document.createElement("i");
+  s.style.left = Math.random() * 100 + "%";
+  s.style.top = Math.random() * 100 + "%";
+  s.style.transform = "scale(" + (0.5 + Math.random() * 0.9) + ")";
+  s.style.animationDelay = (-Math.random() * 4) + "s";
+  s.style.animationDuration = (3 + Math.random() * 4) + "s";
+  $("stars").appendChild(s);
+}
+
+/* Flowing hearts, drifting up the whole page */
+for (let i = 0; i < 22; i++) {
+  const h = document.createElement("i");
+  h.textContent = "♥";
+  h.style.left = Math.random() * 100 + "%";
+  h.style.fontSize = (14 + Math.random() * 24) + "px";
+  h.style.animationDuration = (11 + Math.random() * 12) + "s";
+  h.style.animationDelay = (-Math.random() * 22) + "s";
+  $("hearts").appendChild(h);
+}
+
+/* Live counter since the start date */
+function tick() {
+  const now = new Date();
+  let y = now.getFullYear() - start.getFullYear();
+  let mo = now.getMonth() - start.getMonth();
+  let d = now.getDate() - start.getDate();
+  if (d < 0) { mo--; d += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+  if (mo < 0) { y--; mo += 12; }
+  const values = [y, mo, d, now.getHours(), now.getMinutes(), now.getSeconds()];
+  const counterItems = values.map((value, index) => {
+    const item = document.createElement("div");
+    const number = document.createElement("b");
+    const label = document.createElement("span");
+    number.textContent = value;
+    label.textContent = CONFIG.counterLabels[index];
+    item.append(number, label);
+    return item;
+  });
+  $("counter").replaceChildren(...counterItems);
+}
+tick(); setInterval(tick, 1000);
+
+/* Timeline reveal on scroll */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), {threshold: 0});
+document.querySelectorAll(".timeline li").forEach(li => io.observe(li));
+
+/* Heart bursts */
+const cv = $("fx"), cx = cv.getContext("2d");
+let parts = [], running = false;
+function size() { cv.width = innerWidth; cv.height = innerHeight; }
+size(); addEventListener("resize", size);
+function burst(x, y, n) {
+  if (reduce) return;
+  const cols = ["#ff6f91", "#ffd6a5", "#ff9bb3", "#ffffff"];
+  for (let i = 0; i < n; i++) {
+    const a = Math.random() * Math.PI * 2, v = 3 + Math.random() * 7;
+    parts.push({x, y, vx: Math.cos(a) * v, vy: Math.sin(a) * v - 4, s: 14 + Math.random() * 20, life: 1, c: cols[i % 4]});
+  }
+  if (!running) { running = true; requestAnimationFrame(frame); }
+}
+function frame() {
+  cx.clearRect(0, 0, cv.width, cv.height);
+  parts = parts.filter(p => p.life > 0);
+  parts.forEach(p => {
+    p.x += p.vx; p.y += p.vy; p.vy += .16; p.vx *= .99; p.life -= .011;
+    cx.globalAlpha = Math.max(p.life, 0); cx.fillStyle = p.c;
+    cx.font = p.s + "px serif"; cx.fillText("♥", p.x, p.y);
+  });
+  if (parts.length) requestAnimationFrame(frame); else { running = false; cx.clearRect(0, 0, cv.width, cv.height); }
+}
+
+/* Letter seal */
+$("seal").addEventListener("click", e => {
+  const open = $("paper").classList.toggle("open");
+  $("seal").setAttribute("aria-expanded", open);
+  $("hint").textContent = open ? CONFIG.closeLetterHint : CONFIG.openLetterHint;
+  if (open) { const r = e.currentTarget.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 46); }
+});
+
+/* Final surprise */
+$("btn").addEventListener("click", e => {
+  const open = $("reveal").classList.toggle("open");
+  $("btn").setAttribute("aria-expanded", open);
+  if (open) { const r = e.currentTarget.getBoundingClientRect(); burst(r.left + r.width / 2, r.top, 90); }
+});
+</script>
+</body>
+</html>
